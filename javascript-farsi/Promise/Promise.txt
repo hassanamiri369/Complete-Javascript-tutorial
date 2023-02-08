@@ -1,0 +1,147 @@
+
+// خب کلیت کار پرامیس و هرانچه که درباره ی پرامیس باید بدون اون پایین نوشتم 
+
+
+// یه پرامیس رو این شکلی مینویسن : 
+
+// const getTodoos = function () {
+//     // اگر بخوام از پرامیس اسفتاده بکنم باید بیام اینجا داخل فانکشن یه ابجکت پرامیس ایجاد بکنم 
+//     // در واقع باید یه ابجکت پرامیس ریترن بکنم 
+//     // داخلش به فانکشن برمی گردونیم 
+//     // که داخل اون فانشکن کد هایی که مربوط به ریکوئست زدن هست رو مینویسیم 
+//     // پرامیس دو تا پراپرتی یه ورودی داره که اگر جواب ریکوتست مثبت بود 
+//     // resolve
+//     // برمی گردونه 
+//     // و اگر جواب منفی بود 
+//     // reject
+//     // برمی گردونه 
+//     // دیگه هم لازم نیست که اونن undefined , data 
+//     // رو داخل کال بک بنویسیم یا کلا از کال بک استفاده کنیم 
+
+//     return new Promise(function (resolve , reject) { 
+//         // request down 
+//         if(){
+//             resolve(data); // به عنوان ورودی فقط دیتا رو میگیره 
+//         }else{
+//             reject(error);
+//         }
+//      })
+//   }
+
+
+// getTodoos()  // با صدا زدن این فانکشن خروجی به من یه ابجکت پرامیس میده 
+// // پس چون ابجکت هست باید اون رو تبدیل کنیم دیگه 
+// // میاییم از 
+// // then 
+// // استفاده میکنیم 
+// // then : میاد و قسمت ریزالو رو دریافت میکنه فقط 
+// // اون قسمت ریجکت میره توی کش هندل میشه 
+// .then(function(data){
+//     console.log(data)
+// })
+// // ریجکت هم زمانی میاد که ری کوئست با شکست مواجه شد 
+// // ریجکت رو این جاتو کش هندل میکنیم
+
+// .catch(function(error) {
+//     console.log(error)
+// })
+
+..............................................................................................................................
+
+
+حالا وقت مثاله : 
+
+// حالا بریم به جای کال بک با پرامیس این نا همزمانی رو  هندل بکنیم  : 
+
+
+const url1 = "https://jsonplaceholder.typicode.com/comments/1";
+
+const url2 = "https://jsonplaceholder.typicode.com/comments/2";
+
+const url3 = "https://jsonplaceholder.typicode.com/comments/3";
+
+
+const getTodo = function (url) {
+
+    return new Promise(function(resolve, reject) {
+        // request down :
+        const request = new XMLHttpRequest()
+
+        request.open("GET", url);
+        request.send()
+
+        request.onload = function () {
+            const data = JSON.parse(request.responseText)
+            if (request.status === 200) {
+                resolve(data)   
+            } else (
+                reject(err)  
+            )
+        }
+        })
+    
+
+}
+
+
+//  الان هنوز اون مشکله نا همزمانی درست نشده به خاطر همین 
+// این مشکل رو توی پرامس از راه
+// chaning promisees
+// حل میکنن 
+
+// getTodo(url1)
+// .then(function(data) {  // این دیتا همون دیتا یه بالا هست ها ولی من میتونم هر اسمی دلم خواست براش بزارم این پاییین
+//     console.log(data)
+// })
+// .catch(function (error) { // برای قسمت ارور هم همین طور 
+//     console.log((error))
+//   })
+
+
+//   getTodo(url2)
+// .then(function(data) {  // این دیتا همون دیتا یه بالا هست ها ولی من میتونم هر اسمی دلم خواست براش بزارم این پاییین
+//     console.log(data)
+// })
+// .catch(function (error) { // برای قسمت ارور هم همین طور 
+//     console.log((error))
+//   })
+
+//   getTodo(url3)
+// .then(function(data) {  // این دیتا همون دیتا یه بالا هست ها ولی من میتونم هر اسمی دلم خواست براش بزارم این پاییین
+//     console.log(data)
+// })
+// .catch(function (error) { // برای قسمت ارور هم همین طور 
+//     console.log((error))
+//   })
+
+
+
+
+
+
+
+
+
+
+
+  // chainning promisees   => زنجیره ی پرامیس 
+
+  
+  // جوری یه که بعد از صدا زدن فانکش اول فانکشن دوم رو صدا میزنی و یه  
+  // then براش مینویسی چون 
+  // این دن رو باید براش بنویسی چون اگر ننویسی خروجی یه من باز میشه یه ابجکت پرامیس
+
+
+
+getTodo(url1).then(function(data){
+    console.log(data);  // برای یو ار ال اولی ریکوئست میزنیم 
+    return getTodo(url2); // و بعد برای دومی
+}).then(function (data) {  // اینجا هم دن رو مینویسیم برای دومی
+    console.log(data);  // جواب دومی برمیگرده 
+    return getTodo(url3)  // سومی رو ریکوئست میزنیم
+}).then(function (data) { // این دن هم برای سومی هست 
+    console.log(data)
+}).catch(function(error) {   // برای این سه تا فانکش فقط یه دونه کش مینویسیم 
+    console.log(error)
+})
+

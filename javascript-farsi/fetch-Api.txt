@@ -1,0 +1,85 @@
+﻿همه چیز درباره ی : fetch : 
+
+
+const url = "https://jsonplaceholder.typicode.com/todos";
+
+// داخل پرانتز اون یو ار ال یا Endpoint 
+// که میخواهیم بهش ری کوئست بزنیم رو قرار بدیم 
+
+// const response = fetch(url)
+// console.log(response)  // نتیجه ی این یک ابجکت پرامیس هست 
+
+
+// fetch(url)
+// .then(function (response) {
+//     console.log(response)  // الان یه ریسپانسی توی کنسول برگدوند ولی دیتا رو بر نگردوند 
+//     // داخل proto type :
+//     // یه متدی وجود داره به نام json
+//     // این دیتا رو برمیگردونه 
+//   })
+
+// دیگه نمیخواد هی فانکشن فانکشن بنویسی این شکلی خلاصه هم میتونی بنویسی
+// fetch(url)
+// .then(response => console.log(response))
+
+// fetch(url)
+// .then(function(response){
+//    return response.json() // این هم باز دیتا رو در غالب یه ابجکت پرامیس برمی گردونه 
+//     .then(function(data){
+//         console.log(data)  // الان دیتا رو میکه بیرون 
+//     })
+// })
+
+
+// خلاصه ش هم میشه : 
+
+// fetch(url)
+// .then(response => response.json())
+// .then(data => console.log(data))
+// .catch(err => console.log(err))
+
+
+// چالش اصلی از اینجا شروع میشه : 
+// اگر ری کوئست زدن با مشکل مواجه بشه 
+// fetch
+// هیچ ارور خاصی به من نمیده و نهایتش اینه که یه ابجکت خالی برای من برمی گردونه 
+
+// در واقع فچ کلا برای ما resolve برمی گردونه 
+// اگر میخوای که باهاش ارور هندل کنی باید متد کش رو خودت براش بنویسی
+
+
+fetch(url)
+.then((response) => {
+    if(response.status === 200){
+        return response.json()
+    }else{
+        throw new Error("not found resolve...")
+    }
+})
+.then(data => console.log(data))
+.catch(err => console.log(err))
+
+
+
+...........................................
+
+
+// به عنوان متد دوم یه ابجکت میتونیم بهش بدیم که توش با مدت 
+// post 
+// یه دیتایی رو داخل 
+// api 
+// دخیره کنیم 
+
+fetch(url, {
+    method : "POST",
+    headers : {
+        "Content-Type" : "application/json"
+    },
+    body : JSON.stringify({
+        name : "hassan" ,
+        age : 21
+    })
+})
+.then(res => res.json())
+.then(data => console.log(data))
+.catch(err => console.log(err))

@@ -1,0 +1,214 @@
+
+********************* œÊ « „À«· “œ„ òÂ  ÊÌ «Ì‰ œÊ « ŒÌ·Ì ﬁ‘‰ê Â„ ›Â„Ê„ ò«· »ò »Â ’Ê—   ∆Ê—Ì  Ê÷ÌÕ œ«œÂ ‘œÂ Â„ »Â ’Ê—  òœ „À«· “œÂ ‘œ **************************
+
+callback() => »Â çÂ „⁄‰« Â”  : 
+»Â  Ê ÌÂ ›«‰ò‘‰ „Ìœ„ »⁄œ «“ «Ì‰òÂ  ò«—   „Ê„ ‘œ »Ì« Ê «Ê‰ —Ê «Ã—« »ò‰  
+
+   œ— Ê«ﬁ⁄  «»⁄Ìù”  òÂ »Â ⁄‰Ê«‰ Å«—«„ —  «»⁄Ì œÌê— ›—«ŒÊ«‰Ì ‘œÂ Ê “„«‰Ì «Ã—« „Ìù‘Êœ òÂ —Ê‰œ «Ã—«Ì  «»⁄ ò‰Ê‰Ì »Â Å«Ì«‰ —”ÌœÂ »«‘œ. Callback Ìò
+
+»—«Ì Â„ê«„ ”«“Ì («”Ì‰ò ò—œ‰ )  ÊÌ Ã«Ê««”ò—Ì  Â«Ì ﬁœÌ„Ì »Â ò«— „Ì —›  : ES6 »Â ﬁ»·
+function ball1(ball2){
+setTimeout(() => {
+	console.log("one the end")
+}, 2000)
+ball2(ball3)
+
+}
+
+
+function ball2(ball3){
+setTimeout(() => {
+	console.log("one the end")
+}, 2000)
+ball3()
+
+}
+
+
+function ball3(){
+setTimeout(() => {
+	console.log("one the end")
+}, 2000)
+
+
+}
+
+
+ball1()
+ball2()
+ball3()
+
+
+................................................................. 
+çÌ“Ì òÂ „‰ ›ò— „Ìò‰„ : ‘«Ìœ œ—”  ‰»«‘Â 
+
+œ—Ê«ﬁ⁄ „«  ÊÌ —Ì òÊ∆”  “œ‰ ÌÂ Â„ “„«‰Ì Ê ‰« Â„“„«‰Ì œ«—Ì„ òÂ »Â‘ „ÌêÌ‰ syncronose , asyncronos
+
+òÂ «Ì‰ „‘ò· Â„“„«‰Ì Ê ‰« Â„“„«‰Ì —Ê »« ”Â  « —«Â Õ· „Ì‘Â œ—” ‘ ò—œ òÂ »Â  —Ì » : callback() /  promise / async await
+
+»Â —Ì‰ —«Â Â„ Â„Ì‰ async await Â”  
+
+.........................................................................
+
+Â„Â çÌ“ œ—»«—Â Ì ò«· »ò ›«‰ò‘‰ Ì« ÃÂ‰„ ò«· »ò : 
+
+// Â‰œ· ò—œ‰ «Ì‰ ‰« Â„“„«‰Ì »« «” ›«œÂ «“ 
+// callback()
+
+// «Ì‰‰ „›ÂÊ„ ò«· »ò »Êœ 
+// const url = "https://jsonplaceholder.typicode.com/comments";
+
+
+// const getTodo = function (url , callback) {
+//     const request = new XMLHttpRequest()
+
+//     request.open("GET", url);
+//     request.send()
+
+//     request.onload = function () {
+//         const data = JSON.parse(request.responseText)
+//         if (request.status === 200) {
+//             callback(undefined , data)   // «Ì‰Ã« ò·« œÌ « »—„Ì ê—œÊ‰Â Å” »Â Ã«ÌÌ «—Ê— «‰œ› —Ê „Ì–«—Ì„ 
+//         } else (
+//             callback(err , undefined) // »—⁄ò” »«·« 
+//         )
+//     }
+
+// }
+
+
+// getTodo(url , function(err , data){
+//     if(err){
+//         console.log(err)
+//     }else{
+//         console.log(data)
+//     }
+// })
+
+
+//////////////////////////////
+// «·«‰ „ÌŒÊ«„ òÂ »« ò«· »ò Â‰œ· ò‰„ 
+
+
+
+// const url1 = "https://jsonplaceholder.typicode.com/comments/1";
+
+// const url2 = "https://jsonplaceholder.typicode.com/comments/2";
+
+// const url3 = "https://jsonplaceholder.typicode.com/comments/3";
+
+
+// const getTodo = function (url , callback) {
+//     const request = new XMLHttpRequest()
+
+//     request.open("GET", url);
+//     request.send()
+
+//     request.onload = function () {
+//         const data = JSON.parse(request.responseText)
+//         if (request.status === 200) {
+//             callback(undefined , data)   
+//         } else (
+//             callback(err , undefined)  
+//         )
+//     }
+
+// }
+// «·«‰ òœ »Â ’Ê—  
+// Asynchrounous 
+// «Ã—« „Ì‘Â 
+// «·«‰  ÊÌ «Ì‰ Õ«·  òÂ „‰ œ«—„ —Ì òÊ∆”  „Ì“‰„ ‰« Â„“„«‰Ì ÅÌ‘ „Ì«œ 
+// Ì⁄‰Ì «Ê·  Ìò „Ì«œ »⁄œ ”Â „Ì«œ »⁄œ‘ œÊ „Ì«œ 
+// Ê·Ì „‰ „ÌŒÊ«„ òÂ »Â  — Ì» »Ì«œ Ì⁄‰Ì ”Ì‰ò »«‘Â ‰Â «”Ì‰ò
+
+// {postId: 1, id: 3, name: 'odio adipisci rerum aut animi', email: 'Nikita@garfield.biz', body: 'quia molestiae reprehenderit quasi aspernatur\naut Ömus et vero voluptates excepturi deleniti ratione'}
+// {postId: 1, id: 1, name: 'id labore ex et quam laborum', email: 'Eliseo@gardner.biz', body: 'laudantium enim quasi est quidem magnam voluptate Öutem quasi\nreiciendis et nam sapiente accusantium'}
+// {postId: 1, id: 2, name: 'quo vero reiciendis velit similique earum', email: 'Jayne_Kuhic@sydney.com', body: 'est natus enim nihil est dolore omnis voluptatem nÖiatur\nnihil sint nostrum voluptatem reiciendis et'}
+
+// getTodo(url1 , function(err , data){
+//     if(err){
+//         console.log(err)
+//     }else{
+//         console.log(data)
+//     }
+// })
+
+// getTodo(url2 , function(err , data){
+//     if(err){
+//         console.log(err)
+//     }else{
+//         console.log(data)
+//     }
+// })
+
+// getTodo(url3 , function(err , data){
+//     if(err){
+//         console.log(err)
+//     }else{
+//         console.log(data)
+//     }
+// })
+
+
+// Õ«·« »—Ì„ «Ì‰ —Ê ”Ì‰ò‘ ò‰Ì„ : 
+
+const url1 = "https://jsonplaceholder.typicode.com/comments/1";
+
+const url2 = "https://jsonplaceholder.typicode.com/comments/2";
+
+const url3 = "https://jsonplaceholder.typicode.com/comments/3";
+
+
+const getTodo = function (url , callback) {
+    const request = new XMLHttpRequest()
+
+    request.open("GET", url);
+    request.send()
+
+    request.onload = function () {
+        const data = JSON.parse(request.responseText)
+        if (request.status === 200) {
+            callback(undefined , data)   
+        } else (
+            callback(err , undefined)  
+        )
+    }
+
+}
+
+getTodo(url1 , function(err , data){
+    if(err){
+        console.log(err)
+    }else{
+        console.log(data)
+
+        //1 „Ìê„ ò«— ŒÊœ  òÂ  „Ê„ ‘œ «ﬁ«Ì ›«‰ò‘‰ 
+        // Õ«·« »Ì« ›«‰ò‘‰ 2 —Ê «Ã—« ò‰ 
+
+
+        getTodo(url2 , function(err , data){
+            if(err){
+                console.log(err)
+            }else{
+                console.log(data)
+                // »Â ›«‰ò‘‰ 2 Â„ „Ìê„ «ﬁ«Ì ›«‰ê‘‰ 2 Õ«·« òÂ ò«—   „Ê„ ‘œ »Ì« 
+                // ›«‰ò‘‰ 3 —Ê «Ã— ò‰ 
+                getTodo(url3 , function(err , data){
+                    if(err){
+                        console.log(err)
+                    }else{
+                        console.log(data)
+                    }
+                })
+            }
+        })
+    }
+})
+
+// «·«‰ œ— Â— ’Ê— Ì »Â  — Ì» «Ã—« „Ì‘Â 
+// »Â «Ì‰ ò«—Ì òÂ „‰ ò—œ„ „Ìê‰  : callback ()  Hell
+// »Â «’ÿ·«Õ ò«· ò—œ‰ ›«‰ò‘ Â« »Â ’Ê—   Ê œ—  Ê „ÌêÌ„ ÃÂ‰„ ò«· »ò 
+
+
+
+

@@ -1,0 +1,390 @@
+﻿تعریف دام : DOM 
+داکیومنت ابجکت مدل 
+یه ابجکته از تمام المان های موجود در صفحه ی html 
+که با کمک این ابجکت میشه به اون المان ها دسترسی پیدا کرد و 
+توی اون تغییراتی رو ایجاد کرد . المانی رو جذف یا اضافه کرد یا به اون
+ایونتی رو اضافه کرد  
+...................................................................................
+
+
+نحوه ی دسترسی به المنت  های موجود در صفحه html
+با استفاده از سلکتور ها میتونیم این کارو بکنیم 
+
+ a == html calection ;
+
+// let a = document.getElementById("id")
+// let b = document.getElementsByTagName("tagName")
+// let c = document.getElementsByClassName("class")
+
+// let d = document.querySelector() // اگر این شگلی بمونه و شماره ایندکس بهش ندی به اولین مورد مشابه که برسه همون رو برمیگردونه 
+// let e = document.querySelectorAll(".class" , "#id" , "tagName")
+
+for(let i of c){
+    c.style.backgrounColor  = "blue"; 
+}
+
+// این طوری هم میتونی که فییلتر کنی بری دقیقا اون تگی رو که میخوای رو بگیری
+// let query = document.querySelectorAll(".li-list .books .name")[1];
+// console.log(query);
+
+.....................................................................................................
+
+توضیح کامل درباره ی HTMLCollection و NodeList 
+
+https://www.roxo.ir/javascript-htmlcollection-and-nodelist
+
+.....................................................................................................
+
+
+firstElementChild;
+lastElementChild;
+innerText === innerHTML => برای نمایش محتوای درون تگ ولی بهتره از 
+innerHTML استفاده کنی 
+یا حتی اگر خواستی به داخل تگی محتوایی اضافه کنی میتونی ازش استفاده کنی 
+
+
+چون HTMLCollection یه ارایه از المنت ها برمی گردونه 
+پس میتونی length شو 
+بگیری 
+به دو روش : 
+list.childElementCount  
+
+list.Children;
+list.Children[0]  => ببین چن تا فرزند داره این تگ 
+
+
+li.parentNode  , li.Element;  تگ بالاسری رو میده 
+
+result = li.parentElement.parentElement;
+
+...............................................
+
+درست کردن یه تگ در دام و اضافه کردن اون به body : 
+
+// درواقع دو راه هست برای ساختن تگ راه دوم استفاده از بک تیک و اینر اچ تی ام ال 
+<body>
+    <h2 id="hTag"></h2>
+
+    <script>
+        let h_tag = document.getElementById("hTag");
+
+        h_tag.innerHTML = `
+        <ul>
+            <li>hassan</li>
+            <li>amiri</li>
+        </ul>
+        `
+        
+    </script>
+
+
+
+
+const heading = document.createElement("h2");
+
+
+// دو تا روش برای اضافه کردن کلاس به یه تگ توی دام : 
+
+// الان سومین کلاس رو هم بهش دادم 
+heading.className += " main" ; 
+  // الان دو تا کلاس دادم به این تگی که ساختم 
+  heading.className = "mahdi amiri";
+
+  
+
+
+
+
+heading.id = "ali";
+heading.setAttribute("width" , "100%"); 
+ // دوتا پارامتر دریافت میکنه : اولی اسم اون اتریبیوت یا به عبارتی 
+// کی اون اتری بیوت و دومین ارگمان ولیو با مقدار اتری بیوت هست 
+
+// ایجاد کردن کانتنت برای این تگی که ساختیم : دو تا روش داره 
+// 1 : 
+heading.innerHTML = "hello world "
+// 2 : 
+heading.innerText = "hello innerText"
+
+// فرق بین این دوتا اینه که : 
+// innerText : فقط محتوای متنی یه داخل تگی که ساختم رو به من میده ولی اگر داخل ت
+// تگی که ساختم یه تگ دیگه وجود داشته باشه نشون نمیده ولی 
+// innerHTML : نشون میده اون تگ رو فک کنم 
+// innerHTML : innerHTML: "hello <span>world</span>"
+//innerText : hello world;
+
+// حالا میخوام که داخل این تگی که ساختم یه تگ درست و بعد اضافه بکنم 
+
+const ul = document.createElement("ul"); // الان یه تگ ul ساختم 
+heading.appendChild(ul)  // الانم اومدم اضافه کردم به تگ h2
+
+// داخل این تگ ul هم  دو تا li اضافه میکنیم 
+const li1 = document.createElement("li")
+const li2 = document.createElement("li")
+
+li1.innerHTML = "Ali"
+li2.innerHTML = "Amiri"
+
+ul.appendChild(li1)
+ul.appendChild(li2)
+
+
+// اینم یه روش دیگه برای ساختن تگ در دام : 
+// این روش بهتره : و تمام 
+// با استفاده از بک تیک 
+
+heading.innerHTML = `
+<ul>
+    <li>Hassan</li>
+    <li>amiri</li>
+</ul>
+`
+
+console.log(heading)
+
+
+...................................................
+// ............................................
+// جایگزین کردن یه تگ به یه تگ دیگه توی صفحه : 
+
+
+// تگ جدید رو با ویژگی هاش ساختم 
+const newHeading = document.createElement("h5");
+
+newHeading.className = "title";
+newHeading.innerHTML = 'book list'
+
+// تگ قدیمی رو هم گرفتم :
+const oldHeading = document.querySelectorAll(".title")[1];
+
+// جایگزین کردن از تگ پرنت شروع میشه : 
+const parentHeading = document.querySelector("#book-list");
+// یا 
+const parentHeading2 = oldHeading.parentNode;
+
+// حالا جابه جا میکنیم و تمام : 
+parentHeading.replaceChild(newHeading , oldHeading)
+
+
+//................................
+// حذف کردن با استفاده از تگ پرنت : 
+ 
+
+const li = document.querySelectorAll("li")[3];
+// پرنتش رو هم میگیریم : 
+const ul = document.querySelector("ul");
+
+li.remove()  // این روش اول 
+
+ul.children[3].remove()  // اینم روش دوم با استفاده از پرنت 
+
+
+................................................
+تعریف addEventListener :    خیلی خوب توضیح داده این هارو قبلا نمی دونستم 
+
+// addEventListener : 
+
+const link = document.getElementsByTagName("span")[1 ];
+console.log(link)
+link.addEventListener("click" , function(e) {
+    alert("hello")
+    let result ;
+    result = e.target; // <span class="delete">remove</span> // این تارگت اون تگ رو برمی گردونه 
+    // result= e.type;  // click
+    console.log(result)
+})
+
+
+// یه ابجکت event
+// به طور پیش فرض داخل این function 
+// وجود داره 
+// که میتونیم بهش پاس بدیم و اون تگ رو در اختیار خودمون بگیریم و هر بلاایی که 
+// دلمون خواست سرش بیاریم 
+// این طوری با استفاده از این event 
+// میتونیم یه سری رفتار به اون تگ اضافه کنیم
+// با اون click : 
+// گفتیم که اگر فلان اتفاق روی اون تگ افتاد بیا فلان کار رو بکن 
+// الان با استفاده از این event 
+// ما خودمون با اختیار خودمون میاییم یه سری ایونت میسازیم و به 
+// به اون تگ پاس میدیم میگیم فلان بلا رو روی اون تگ بیار
+
+..................................................................................
+برسی تمام ایونت های موس و کیبورد : 
+
+و نکاتی درباره ی input form: 
+
+// mouse event : 
+// click 
+// dobClick
+// mousedown
+// mouseup
+// mouseenter
+//mouseout
+// mousemove
+
+// بریم یه مختصات موس رو بگیریم و توی یه دیو نمایش بدیم :
+
+
+// const heading = document.querySelectorAll(".title ")[1];
+
+// document.body.addEventListener("mousemove" , function(e){
+//     console.log(`mouseX : ${e.offsetX} <br/> mouseY : ${e.offsetY}`)
+//     heading.innerHTML = `mouseX : ${e.offsetX} <br/> mouseY : ${e.offsetY}`
+
+// })
+
+
+// keyboard event : 
+
+const inputText = document.querySelector("#add-book input");
+const link = document.querySelector("#add-book button");
+
+
+// inputText.value= ''
+// link.addEventListener("click" , function(e){
+//     console.log(inputText.value)
+//     inputText.value = "";  // بعد از انیکه ولیو رو نشون داد داخل اینپوت رو خالی میکنه 
+//     e.preventDefault()
+// })
+
+//keyup , keydown => از اینا استفاده کنی و ولیو شون رو کنسول بگیری هرچی توی انپیوت داری تایپ میکنی رو بهت نمایش میده و 
+// بهتره که از keyup استفاده کنی 
+
+// inputText.addEventListener("keyup" , function(e){
+//     console.log(inputText.value)
+// })
+
+
+// focus , blur => اولی وقتی انیپوت سلکت میشه اجرا میشه
+// دومی وقتی اینپوت رو از سلکت خارج میکنی اجرا میشه 
+
+
+// inputText.addEventListener("focus" , function(e){
+//     console.log("selected")
+// })
+
+// inputText.addEventListener("blur" , function(e){
+//     console.log("unselected")
+// })
+
+
+// نکته درباره ی چک باکس : checkBox :
+// وقتی دکمه شو میزنی active میشه  : true
+// وقتی از دکمه شو برمیداری diactive میشه  : false
+// check  , onCheck
+
+const checkBox = document.querySelector("#hide input");
+console.log(checkBox)
+
+// checkBox.checked = true;  // همیشه تیک ش خورده 
+// checkBox.checked = false ; // همیشه تیک ش برداشته شده 
+
+
+// میخوام وفتی دکمه ی تیکش خورد کتاب ها مخفی بشه و هم اون هدرش :
+
+const heading = document.querySelector("#books-list h2")
+const ul = document.querySelector("ul")
+
+// ما اینجا به جای ایونت click 
+// میتونستیم از ایونت change 
+// هم استفاده بکنیم 
+
+checkBox.addEventListener("click" , function(e){
+    if(checkBox.checked){
+        heading.style.display = "none";
+        ul.style.display = "none"
+    }else{
+        heading.style.display = "block";
+        ul.style.display = "block";
+    }
+})
+
+تمامی موارد دام توم شد رفت همین ها بود     => خودت دنبال دتئوریش باش 
+
+...........................................................................................
+
+
+localStorage : 
+
+
+// localStorage : محلی یه داخل مرورگر که من میتونم اطاعاتم رو اونجا ذخیره بکنم 
+// درباره این هم بخون : session storage 
+
+
+// از توی تب application 
+// میتونی به این localStorage 
+// دسترسی داشته باشی 
+// اطلاعات رو توی ستون
+// value 
+// ذخیره میکنیم 
+// و از طریق ستون
+// key 
+// به اون دسترسی پیدا میکنیم 
+
+
+
+// میخواهییم یه سری اطلاعات رو داخل لوکال استوریج ذخیره کنیم : 
+
+// localStorage.setItem("key" , "value")
+
+// localStorage.setItem("Hassan" , "amiri")
+// localStorage.setItem("Hassan1" , "amiri1")
+// localStorage.setItem("Hassan2" , "amiri2")
+
+// اطلاعات رو دریافت میکنیم : 
+
+// const name = localStorage.getItem("Hassan");
+// console.log(name)
+// اطلاعات رو به عنوان 
+// value 
+// ذخیره میکنی 
+
+
+// حالا میخواهیم یه دونه از اون کی و ولیو هارو جذف کنیم : 
+
+// localStorage.removeItem("key") // فقط اسم کی رو میدی : اون هر دو کی و ولیو رو جذف میکنه 
+// localStorage.removeItem("Hassan1")
+
+// کل اطلاعات رو هم حذف میکنیم 
+// localStorage.clear()
+/////////////////////////////////////////////////////
+
+// اطاعات رو به شکل 
+// string 
+// داخل 
+// localStorage 
+// دخیره میکنن 
+
+// حالا بریم یه آرایه و یه آبجکت رو داخل لوکال استوریج ذخیره بکنیم : 
+
+const arr = ["mahdi1 " , "ali"];
+const obj = {name : "javad" , age : 21};
+
+
+// اطلاعات رو هر جوری که باشه ارایه یا ابجکت در لوکال استوریج به شکل یه استرینگ ذخیره میشه 
+// و خروجی هم بهت یه استیرینگ میده 
+// اینو باید چیگار کنیم ؟ :
+
+
+// ارایه رو موقع  دریافت اسپیلیت کن درست میشه 
+
+localStorage.setItem("array" , arr)
+const myArray = localStorage.getItem("array").split(",")
+// console.log(myArray)
+
+// ابجکت رو موقع ذخیره کردن تبدیل کن به استرینگ با استفاده از جیسون 
+ 
+localStorage.setItem("object" , JSON.stringify(obj));
+
+// JSON.parse()  => استرینگ میگیره و ابجکت پس میده 
+// JSON.stringify() => ابجکت میگیره و استرینگ تحویل میده 
+
+// موقع گرفتن اطلاعات از لوکال استوریج هم بنداز تو جیسون پارس که بهت ابجکت بده 
+const myObject = JSON.parse(localStorage.getItem("object"))
+// console.log(myObject)
+
+
+
+........................................................................................
+
+تکمیل پروژه ی نهایی : 

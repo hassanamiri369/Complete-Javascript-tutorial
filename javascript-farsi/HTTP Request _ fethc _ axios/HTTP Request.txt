@@ -1,0 +1,135 @@
+// مفهوم API => اینم درباره ش بخون 
+اما مفهوم کلی میشه این 
+پل ارتباطی بین فرانت اند و بک اند
+Endpoint : محل وجود منابع  => اون یو ار ال ما 
+اگر بخواهیم به سرور ری کوئست بزنیم باید با این 
+API Endpoint 
+کار کنیم 
+..................................................................................
+
+
+
+const url = "https://jsonplaceholder.typicode.com/todos" ;
+// �� ������� �� ������ǘ���� XMLHttpRequest  = > �� ������ �� ��� �� ���� �� ��̘� ����� Ș�� 
+
+const request = new XMLHttpRequest()
+
+// ���� ������ ��� �� ����� ���� : 
+// opne() ���� ����� ����� : �ѐ��� ��� ��� �� ����� �� ��� ���� �� �� ��� �� �����  / �ѐ��� ��� ����� �� ���� ��� �� ����� ����� 
+
+request.open("GET" , url );
+// ���� �� �� ������� ����� ���� ��� �� ����� Ș�� �� ������� �� ��� send()
+
+request.send();
+
+//��� �� ��� ���ј > ��� �� ��� > ��� ��� ��Ӂ��� ====> ���� ���� �� ��  ���� 
+
+// ���� ������ ���� �� ��� ��Ӂ���� �� ������ ���� ���� � ������ ������ Ș�� :
+
+// �� ������� �� ��ǁ��� �� onload()
+
+request.onload = function() {
+	if(request.status === 200){
+		// ���� ������� �� ���� ����� ��� �������� ���� Ș��� �� ��� ��� ������� ��� 
+		const data = JSON.parse(request.responseText)  // �������� �� �� Ԙ� ������ ��� �� �� Ԙ� ��̘� �� �����
+
+		// console.log(data[0].title)
+		console.log(data)  // ��� � ������� �� ���� �� ��̘� ���� �� �ѐ������ �� 
+		// 200 �� ��̘� �� �� ���� ������ �� �� ������� �� ���� � for of ������ �� ����� �� ��̘�� ������ ����� ���� 
+		
+		// for(let i of data){
+		// 	console.log(i.title)
+		// }
+	}else{
+		console.log("not Found . . .")
+	}
+	
+}
+
+......................................................................................................
+
+fetch data; 
+
+}
+
+
+// ��� �� ��� ���� �� 
+
+// fetch(�https://rickandmortyapi.com/api/character/�)
+//    .then(response => response.json())
+//    .then(characters => showCharacters(characters.results));
+
+
+// ���� �� ����� ����� :
+
+// fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+//   .then((response) => {
+//     if (response.ok) {
+//       return response.json();
+//     } else {
+//       throw new Error("NETWORK RESPONSE ERROR");
+//     }
+//   })
+//   .then(data => {
+//     console.log(data);
+//     displayCocktail(data)
+//   })
+//   .catch((error) => console.error("FETCH ERROR:", error));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const url = "https://jsonplacholder.com/user/"
+
+const requset = XML HTTPRequest()
+
+request.opne("GET" , url)
+request.send()
+
+
+//console.log(request) // ��� request ���� ���� ��� ��� ��� ������� ���� 
+request.onload = function() {
+	const data = JSON.pars(request.responseText)
+	// createElement(data)
+	if(request.status === 200){
+	for(let i of data){
+		console.log(i)
+		}
+	}
+
+}
+
+// ����� �� ���� � ��� �� ����� ������� �� ����� ���� �� �� ��� ����� ������ �� ��� ��� �����
+// ��� �� ����� ��� ��� ����� �� ����� �� ����� ����� ��� ������ 
+
+fucntion createElement() {}
+
+
+
+
+
+
+
+
+
+
